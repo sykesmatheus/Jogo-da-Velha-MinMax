@@ -39,6 +39,7 @@ Implementação-Chave:
     
     return melhorValor;
   }
+
 gerarCandidatos(): Gera todos os movimentos válidos para o jogador atual.
 
 avaliar(): Retorna 1 (vitória da IA), -1 (vitória humana) ou 0 (empate).

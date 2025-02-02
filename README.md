@@ -54,6 +54,4 @@ verificarGanhador(): Checa linhas, colunas e diagonais.
 
 minMax(): Implementação do algoritmo de decisão.
 
-📄 Licença
-Distribuído sob a licença MIT. Veja LICENSE para mais detalhes.
 

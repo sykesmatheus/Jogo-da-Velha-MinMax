@@ -24,27 +24,37 @@ public class Main {
                     coluna = scanner.nextInt() - 1;
                 } while (!tabuleiro.adicionarElemento(linha, coluna, 'X')); // Valida a entrada
             }
-            else { // Turno da IA
+            else {
+                // Turno da IA
                 System.out.println("\nVez do computador...");
-                List<Tabuleiro> candidatos = tabuleiro.gerarCandidatos('O');
-                int melhorValor = Integer.MIN_VALUE;  // Corrigido
-                Tabuleiro melhorJogada = candidatos.get(0);
 
+                // Gera todas as jogadas possíveis para 'O'
+                List<Tabuleiro> candidatos = tabuleiro.gerarCandidatos('O');
+
+                // Inicializa o melhor valor com o menor inteiro possível (busca de maximização)
+                int melhorValor = Integer.MIN_VALUE;
+                Tabuleiro melhorJogada = candidatos.get(0); // Inicializa com a primeira jogada
+
+                // Avalia cada jogada candidata
                 for (Tabuleiro candidato : candidatos) {
-                    int valorAtual = candidato.minMax(false);  // Simula a resposta do jogador (X)
-                    if (valorAtual > melhorValor) {  // Agora busca o máximo
+                    // Simula a resposta do jogador humano (X) usando Minimax com minimização
+                    int valorAtual = candidato.minMax(false);
+
+                    // Atualiza a melhor jogada se encontrar um valor maior
+                    if (valorAtual > melhorValor) {
                         melhorValor = valorAtual;
                         melhorJogada = candidato;
                     }
                 }
 
-                // Aplica a jogada corretamente:
+                // Aplica a jogada escolhida ao tabuleiro real
                 boolean jogadaAplicada = false;
                 for (int i = 0; i < 3 && !jogadaAplicada; i++) {
                     for (int j = 0; j < 3 && !jogadaAplicada; j++) {
+                        // Encontra a posição onde o candidato difere do tabuleiro atual
                         if (tabuleiro.tabuleiro[i][j] != melhorJogada.tabuleiro[i][j]) {
-                            tabuleiro.adicionarElemento(i, j, 'O');
-                            jogadaAplicada = true;  // Garante que só uma jogada seja aplicada
+                            tabuleiro.adicionarElemento(i, j, 'O'); // Coloca 'O' na posição correta
+                            jogadaAplicada = true; // Garante que só uma jogada seja aplicada
                         }
                     }
                 }

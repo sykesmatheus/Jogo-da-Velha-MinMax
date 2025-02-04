@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Metodo principal que controla o fluxo do jogo
+    //Metodo principal que controla o fluxo do jogo
     public static void main(String[] args) {
+        
         Scanner scanner = new Scanner(System.in);
         Tabuleiro tabuleiro = new Tabuleiro();
         char jogadorAtual = 'X'; // Começa com o jogador
@@ -25,26 +26,25 @@ public class Main {
             }
             else { // Turno da IA
                 System.out.println("\nVez do computador...");
-
                 List<Tabuleiro> candidatos = tabuleiro.gerarCandidatos('O');
-                int melhorValor = Integer.MAX_VALUE;
+                int melhorValor = Integer.MIN_VALUE;  // Corrigido
                 Tabuleiro melhorJogada = candidatos.get(0);
 
-                // Avalia todas as jogadas possíveis
                 for (Tabuleiro candidato : candidatos) {
-                    int valorAtual = candidato.minMax(true); // Simula jogadas futuras
-                    if (valorAtual < melhorValor) {
+                    int valorAtual = candidato.minMax(false);  // Simula a resposta do jogador (X)
+                    if (valorAtual > melhorValor) {  // Agora busca o máximo
                         melhorValor = valorAtual;
                         melhorJogada = candidato;
                     }
                 }
 
-                // Aplica a melhor jogada encontrada
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
+                // Aplica a jogada corretamente:
+                boolean jogadaAplicada = false;
+                for (int i = 0; i < 3 && !jogadaAplicada; i++) {
+                    for (int j = 0; j < 3 && !jogadaAplicada; j++) {
                         if (tabuleiro.tabuleiro[i][j] != melhorJogada.tabuleiro[i][j]) {
                             tabuleiro.adicionarElemento(i, j, 'O');
-                            break;
+                            jogadaAplicada = true;  // Garante que só uma jogada seja aplicada
                         }
                     }
                 }

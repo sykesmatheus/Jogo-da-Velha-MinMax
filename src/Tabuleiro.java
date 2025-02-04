@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Tabuleiro {
     public char[][] tabuleiro;  // Matriz 3x3 que representa o tabuleiro
@@ -157,6 +157,7 @@ public class Tabuleiro {
         // Retorna o melhor valor encontrado para este nível da árvore de decisão
         return melhorValor;
     }
+
 
 
 }

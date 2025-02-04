@@ -39,6 +39,7 @@ Implementação-Chave:
     
     return melhorValor;
   }
+
 gerarCandidatos(): Gera todos os movimentos válidos para o jogador atual.
 
 avaliar(): Retorna 1 (vitória da IA), -1 (vitória humana) ou 0 (empate).
@@ -54,6 +55,4 @@ verificarGanhador(): Checa linhas, colunas e diagonais.
 
 minMax(): Implementação do algoritmo de decisão.
 
-📄 Licença
-Distribuído sob a licença MIT. Veja LICENSE para mais detalhes.
 
